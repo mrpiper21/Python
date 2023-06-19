@@ -28,7 +28,7 @@ def login(PROMPT):  # Ask user to login
                 print("Loggin successful!")
                 break
             else:
-                print("invalid username of password")
+                print("invalid username or password")
                 pass
 
 
@@ -37,19 +37,27 @@ def create_account(PROMPT):  # Ask user to create account
         first_name = input('Enter your First name: ')
         last_name = input('Enter your last name: ')
         USER_NAME = input('Create a user name: ')
-        for i in range(3):
+        for i in range(5):
             USER_PASS = input('Create a password: ')
+            for i in USER_PASS:
+                if ord(i) >= 65 and ord(i) <= 95 or ord(i) >= 97 and ord(i) <= 122:
+                    break
+                elif ord(i) >= 48 and ord(i) <= 57 or ord(i) >= 32 and ord(i) <= 152:
+                    break
+                else:
+                    print("Password must include uppercase letter, lowercase letter and a digit!")
+                    pass
             if len(USER_PASS) < 7:
                 print('Create a strong password with at least 7 charcters')
                 pass
             else:
                 if len(USER_PASS) > 7:
                     append_database(USER_NAME, USER_PASS)
+                    print("Account created!")
                     break
 
-
 def append_database(Username, Userpassword):
-    # Stores the username and userpassword in the database
+    # Stores the username and user-password in the database
     USER_BASE = open('sensitiveinfo.txt', 'a')
     USER_BASE.write(Username + ': ' + Userpassword + '\n')
     USER_BASE.close()  # Close userbase after storage
@@ -62,16 +70,14 @@ def findpassword(passvalue):
     string_valueP = string_valueP.replace(" ", "")
     return string_valueP
 
-
 def read_database(username, userpassword):
-    # Read through dasebase and check whether username and userpassword are in the database
+    # Read through database and check whether username and user-password are in the database
     USER_BASE = open('sensitiveinfo.txt', 'r')
     for line in USER_BASE:
         if line.startswith(username):
             password = findpassword(line)
             if userpassword == password:
                 return 1
-            break
         else:
             return 0
 
