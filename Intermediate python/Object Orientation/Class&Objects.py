@@ -12,7 +12,8 @@ class person:
     def __str__(self):
         return('Name: (), Age: (), Height: ()'.format(self.name, self.age, self.height))
 
-    def get_older(year):
+    def get_older(self):
+        year = 0
         self.age += year
     #Class variables
 
