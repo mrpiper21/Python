@@ -5,9 +5,10 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        self.nums = nums
-        self.target = target
-        
+        List = {}
         for i in len(nums):
-            cur = self.nums[i]
-            
+            x = target - nums[i]
+
+            if x in List:
+                return [i, List[x]]
+            List[i] = i
