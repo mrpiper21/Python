@@ -7,6 +7,7 @@ class Register:
 
 
 class Login(Register):
-    pass
+    def __init__(self, name, email, age):
+        super().__init__(name, email, age)
 
 Login("bbaah@gmail.com", "Bernard", 5)
